@@ -1,0 +1,223 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --foreground-rgb: 0, 0, 0;
+  --background-start-rgb: 214, 219, 220;
+  --background-end-rgb: 255, 255, 255;
+}
+
+#body,
+body {
+  margin: 0 auto !important;
+}
+
+#paragraph,
+textarea {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+}
+
+/* Themes */
+@layer base {
+  :root {
+    --background: 0, 0%, 12%; /* #1e1e1e */
+    --foreground: 0, 0%, 83%; /* #d4d4d4 */
+    --primary: 18, 54%, 68%; /* #ce9178 */
+    --secondary: 0, 0%, 28%; /* #474747 */
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+  html {
+    @apply bg-background text-foreground;
+  }
+}
+
+.theme-mocha {
+  --background: 0, 11%, 16%; /* #1a1a1a */
+  --foreground: 34, 54%, 74%; /* #b3dbad */
+  --primary: 17, 77%, 49%; /* #dc5544 */
+  --secondary: 20, 33%, 27%; /* #2f2924 */
+}
+
+.theme-dark {
+  --background: 0 0% 3.9%; /* #0a0a0a */
+  --foreground: 0 0% 98%; /* #fafafa */
+  --primary: 0 0% 98%; /* #fafafa */
+  --secondary: 0 0% 20.9%; /* #353535 */
+}
+
+.theme-mkbhd {
+  --background: 0, 0%, 9%; /* #171717 */
+  --foreground: 0, 0%, 93%; /* #ededed */
+  --primary: 351, 94%, 45%; /* #da0037 */
+  --secondary: 0, 0%, 27%; /* #444444 */
+}
+
+.theme-coral {
+  --background: 20, 91%, 90%; /* #fdd2bf */
+  --foreground: 3, 60%, 44%; /* #df5e5e */
+  --primary: 24, 76%, 19%; /* #492f10 */
+  --secondary: 3, 76%, 74%; /* #e98580 */
+}
+
+.theme-ocean {
+  --background: 200, 8%, 87%; /* #dddddd */
+  --foreground: 206, 76%, 36%; /* #125d98 */
+  --primary: 220, 99%, 34%; /* #f5a962 */
+  --secondary: 197, 48%, 50%; /* #3c8dad */
+}
+
+.theme-azure {
+  --background: 225, 24%, 30%; /* #383e56 */
+  --foreground: 17, 50%, 89%; /* #eedad1 */
+  --primary: 15, 86%, 77%; /* #f69e7b */
+  --secondary: 10, 29%, 60%; /* #d4b5b0 */
+}
+
+.theme-rose-milk {
+  --background: 0, 0%, 100%; /* #ffffff */
+  --foreground: 0, 0%, 7%; /* #111111 */
+  --primary: 0, 59%, 42%; /* #b33838 */
+  --secondary: 185, 55%, 40%; /* #3b8792 */
+}
+
+.theme-amethyst {
+  --background: 290, 35%, 87%; /* #e2caea */
+  --foreground: 303, 93%, 18%; /* #480c51 */
+  --primary: 342, 70%, 35%; /* #ab395f */
+  --secondary: 278, 23%, 68%; /* #9774aa */
+}
+
+.theme-terminal {
+  --background: 0, 0%, 0%; /* #000000 */
+  --foreground: 0, 0%, 100%; /* #ffffff */
+  --primary: 0, 100%, 50%; /* #ff0000 */
+  --secondary: 120, 100%, 50%; /* #00ff00 */
+}
+
+.theme-vscode {
+  --background: 0, 0%, 12%; /* #1e1e1e */
+  --foreground: 0, 0%, 83%; /* #d4d4d4 */
+  --primary: 18, 54%, 68%; /* #ce9178 */
+  --secondary: 0, 0%, 28%; /* #474747 */
+}
+
+.theme-mountain {
+  --background: 154, 82%, 10%; /* #10271e */
+  --foreground: 43, 63%, 47%; /* #d1ac3f */
+  --primary: 205, 87%, 76%; /* #a2d6f6 */
+  --secondary: 86, 34%, 35%; /* #485e2c */
+}
+
+.theme-pink-sky {
+  --background: 249, 93%, 38%; /* #23049d */
+  --foreground: 332, 100%, 74%; /* #ff79cd */
+  --primary: 47, 100%, 70%; /* #ffdf6b */
+  --secondary: 276, 75%, 48%; /* #aa2ee6 */
+}
+
+.caret {
+  position: relative;
+}
+
+.caret::after {
+  background-color: hsl(var(--primary));
+  content: "";
+  display: flex;
+  height: 100%;
+  left: -1px;
+  animation: blink 1s step-start infinite 0.5s;
+  transition-delay: 0.2s;
+
+  position: absolute;
+  top: 0;
+  width: 2px;
+}
+
+/* Loader */
+/* HTML: <div class="loader"></div> */
+.loader {
+  --s: 25px;
+
+  --_d: calc(0.353 * var(--s));
+  width: calc(var(--s) + var(--_d));
+  aspect-ratio: 1;
+  display: grid;
+}
+.loader:before,
+.loader:after {
+  content: "";
+  clip-path: polygon(
+    var(--_d) 0,
+    100% 0,
+    100% calc(100% - var(--_d)),
+    calc(100% - var(--_d)) 100%,
+    0 100%,
+    0 var(--_d)
+  );
+  background: conic-gradient(
+    from -90deg at var(--s) var(--_d),
+    #fff 135deg,
+    #666 0 270deg,
+    #aaa 0
+  );
+  animation: l4 1.2s infinite;
+}
+.loader:before {
+  z-index: 1;
+  margin-bottom: calc(var(--_d) / -2 - 1px);
+}
+.loader:after {
+  margin-top: calc(var(--_d) / -2 - 1px);
+  animation-delay: 0.6s;
+}
+@keyframes l4 {
+  0% {
+    transform: translate(0);
+  }
+  16.67% {
+    transform: translate(-10px);
+  }
+  33.33% {
+    transform: translate(10px);
+  }
+  50%,
+  100% {
+    transform: translate(0);
+  }
+}
+
+/* Animations */
+@keyframes blink {
+  50% {
+    opacity: 0;
+  }
+}
+
+@keyframes themeSlider {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
