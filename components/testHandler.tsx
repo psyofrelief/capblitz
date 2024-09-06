@@ -108,7 +108,7 @@ export default function TestHandler() {
 
   return (
     <div
-      className="relative my-10 text-foreground h-[115px] sm:h-[128px]  overflow-y-scroll w-[300px] sm:w-[600px] font-mono font-extralight p-[10px]   text-lg flex items-center"
+      className="relative my-10 text-foreground h-[115px] sm:h-[128px]  overflow-y-scroll w-[300px] sm:w-[600px] font-mono font-extralight  p-[10px] text-lg flex items-center bg-background"
       onClick={() => {
         setInputFocused(true);
         textAreaRef.current?.focus();
@@ -118,24 +118,11 @@ export default function TestHandler() {
         textAreaRef.current?.focus();
       }}
     >
-      <textarea
-        ref={textAreaRef}
-        value={typedText}
-        onChange={handleInputChange}
-        className="absolute left-0 right-0 top-[3px] bottom-0  p-[10px] h-115px text-lg resize-none opacity-0 text-primary border-none outline-none leading-tight"
-        onKeyDown={handleKeyDown}
-        onFocus={() => {
-          setInputFocused(true);
-        }}
-        onBlur={() => {
-          setInputFocused(false);
-        }}
-      />
       {inputFocused ? (
         <p
           id="paragraph"
           ref={paragraphRef}
-          className="text-2xl sm:text-3xl h-full overflow-y-scroll pointer-events-none pl-[1px]   my-auto"
+          className="text-2xl sm:text-3xl h-full overflow-y-scroll pointer-events-none pl-[1px]   my-auto z-99 bg-background"
         >
           {paragraph.split("").map((char, index) => (
             <span
@@ -149,11 +136,24 @@ export default function TestHandler() {
       ) : (
         <p
           id="blurred"
-          className="h-full w-full text-2xl sm:text-3xl cursor-pointer absolute top-0 right-0 left-0 bottom-0  items-center justify-center text-center text-foreground opacity-80 flex"
+          className="h-full w-full text-2xl sm:text-3xl cursor-pointer absolute top-0 right-0 left-0 bottom-0  items-center justify-center text-center text-foreground opacity-80 flex bg-background z-2"
         >
           Click here to begin typing...
         </p>
       )}
+      <textarea
+        ref={textAreaRef}
+        value={typedText}
+        onChange={handleInputChange}
+        className="absolute z-[-1] left-0 right-0 top-[3px] bottom-0  p-[10px] h-115px text-lg resize-none opacity-100 text-primary border-none outline-none leading-tight"
+        onKeyDown={handleKeyDown}
+        onFocus={() => {
+          setInputFocused(true);
+        }}
+        onBlur={() => {
+          setInputFocused(false);
+        }}
+      />
     </div>
   );
 }
