@@ -73,6 +73,13 @@ export default function TestHandler() {
   };
 
   useEffect(() => {
+    window.addEventListener("keydown", handleKeyDown);
+    return () => {
+      window.removeEventListener("keydown", handleKeyDown);
+    };
+  }, [timerActive]);
+
+  useEffect(() => {
     if (!timerActive) {
       paragraphRef.current?.scrollTo(0, 0);
       textAreaRef.current?.focus();
